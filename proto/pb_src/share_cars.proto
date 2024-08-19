@@ -1,0 +1,31 @@
+syntax = "proto3";
+package test;
+
+option go_package = "github.com/pj-rione/protobuf-test";
+
+message Vector2D {
+    float x = 1;
+    float y = 2;
+}
+
+message DetectObjects {
+    string src_id = 1; // 送信元ID
+
+    enum ObjectType {
+        VEHICLE = 0; //車
+        TRUCK = 1; //トラック
+        PEDESTRIAN = 2; //歩行者
+        OTHER = 3; //その他のオブジェクト
+    }
+
+    message Object {
+        ObjectType type = 1; // 0 to 3
+        float confidence = 2; // 0.0 to 1.0
+        Vector2D position = 3; // in meters
+        float length = 4; // in meters
+    }
+
+    repeated Object object = 2; // 検出されたオブジェクト（複数可）
+
+    optional string hash = 3; // ハッシュ値（省略可）
+}
