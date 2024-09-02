@@ -9,7 +9,7 @@ message Vector2D {
 }
 
 message DetectObjects {
-    string src_id = 1; // 送信元ID
+    uint32 src_id = 1; // 送信元ID
 
     enum ObjectType {
         VEHICLE = 0; //車
@@ -26,6 +26,4 @@ message DetectObjects {
     }
 
     repeated Object object = 2; // 検出されたオブジェクト（複数可）
-
-    optional string hash = 3; // ハッシュ値（省略可）
 }
